@@ -87,7 +87,7 @@ LD_LIBRARY_PATH=${OUT_PREFIX} ./configure \
     --with-sqlite3=shared \
     --with-pdo-sqlite=shared \
     --with-xmlrpc=shared \
-    --with-ldap=shared \
+    --with-ldap \
     --with-xsl=shared \
     $configureopts
 make -s -j 9
