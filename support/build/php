@@ -36,6 +36,10 @@ if echo -n $dep_version | python -c "import sys, pkg_resources; ver=pkg_resource
     curl -L https://github.com/php/php-src/pull/694.diff | patch -p1
 fi
 
+# Ubuntu's libldap2-dev puts the LDAP libraries in /usr/lib/x86_64-linux-gnu instead of just /usr/lib
+sed -i 's/LDAP_LIBDIR=$i\/$PHP_LIBDIR/LDAP_LIBDIR=$i\/$PHP_LIBDIR\/x86_64-linux-gnu/' configure
+sed -i 's/LDAP_LIBDIR=$i\/$PHP_LIBDIR/LDAP_LIBDIR=$i\/$PHP_LIBDIR\/x86_64-linux-gnu/' ext/ldap/config.m4
+
 configureopts=
 if [[ $dep_version == 7.* ]]; then
     configureopts="\
